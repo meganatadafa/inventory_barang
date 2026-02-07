@@ -58,10 +58,12 @@ require 'cek.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Barang Keluar
                         </a>
-                        <a class="nav-link" href="admin.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
-                            Kelola Admin
-                        </a>
+                        <?php if (isAdmin()): ?>
+                            <a class="nav-link" href="admin.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+                                Kelola Admin
+                            </a>
+                        <?php endif; ?>
                         <a class="nav-link" href="logout.php">
                             LogOut
                         </a>
@@ -79,9 +81,11 @@ require 'cek.php';
                     <h1 class="mt-4">Barang Keluar</h1>
                     <div class="card mb-4">
                         <div class="card-header">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                <i class="fas fa-plus mr-2"></i>Tambah Barang Keluar
-                            </button>
+                            <?php if (isAdmin()): ?>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                    <i class="fas fa-plus mr-2"></i>Tambah Barang Keluar
+                                </button>
+                            <?php endif; ?>
                             <a href="exportkeluar.php" class="btn btn-info">
                                 <i class="fas fa-download mr-2"></i>Export Data
                             </a>
@@ -95,7 +99,9 @@ require 'cek.php';
                                             <th>Nama Barang</th>
                                             <th>Jumlah</th>
                                             <th>Penerima</th>
-                                            <th>Aksi</th>
+                                            <?php if (isAdmin()): ?>
+                                                <th>Aksi</th>
+                                            <?php endif; ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -114,14 +120,16 @@ require 'cek.php';
                                                 <td><?= $namabarang; ?></td>
                                                 <td><?= $qty; ?></td>
                                                 <td><?= $penerima; ?></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $idk; ?>">
-                                                        <i class="fas fa-edit"></i> Edit
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $idk; ?>">
-                                                        <i class="fas fa-trash"></i> Delete
-                                                    </button>
-                                                </td>
+                                                <?php if (isAdmin()): ?>
+                                                    <td>
+                                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $idk; ?>">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $idk; ?>">
+                                                            <i class="fas fa-trash"></i> Delete
+                                                        </button>
+                                                    </td>
+                                                <?php endif; ?>
                                             </tr>
 
                                             <!-- Edit Modal -->

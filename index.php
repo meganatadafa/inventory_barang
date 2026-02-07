@@ -69,10 +69,12 @@ require 'cek.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Barang Keluar
                         </a>
-                        <a class="nav-link" href="admin.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
-                            Kelola Admin
-                        </a>
+                        <?php if (isAdmin()): ?>
+                            <a class="nav-link" href="admin.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+                                Kelola Admin
+                            </a>
+                        <?php endif; ?>
                         <a class="nav-link" href="logout.php">
                             LogOut
                         </a>
@@ -110,10 +112,12 @@ require 'cek.php';
                         </div> -->
                     <div class="card mb-4">
                         <div class="card-header">
-                            <!-- Button to Open the Modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                Tambah Barang
-                            </button>
+                            <?php if (isAdmin()): ?>
+                                <!-- Button to Open the Modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                    Tambah Barang
+                                </button>
+                            <?php endif; ?>
                             <a href="export.php" class="btn btn-info">Export Data</a>
                         </div>
                         <div class="card-body">
@@ -141,8 +145,9 @@ require 'cek.php';
                                             <th>Nama Barang</th>
                                             <th>Deskripsi</th>
                                             <th>Stock</th>
-                                            <th>Aksi</th>
-
+                                            <?php if (isAdmin()): ?>
+                                                <th>Aksi</th>
+                                            <?php endif; ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -161,14 +166,16 @@ require 'cek.php';
                                                 <td><?php echo $namabarang; ?></td>
                                                 <td><?php echo $deskripsi; ?></td>
                                                 <td><?php echo $stock; ?></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $idb; ?>">
-                                                        Edit
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $idb; ?>">
-                                                        Delete
-                                                    </button>
-                                                </td>
+                                                <?php if (isAdmin()): ?>
+                                                    <td>
+                                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $idb; ?>">
+                                                            Edit
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $idb; ?>">
+                                                            Delete
+                                                        </button>
+                                                    </td>
+                                                <?php endif; ?>
                                             </tr>
 
                                             <!-- edit Modal -->

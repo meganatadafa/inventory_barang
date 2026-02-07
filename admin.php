@@ -1,6 +1,12 @@
 <?php
 require 'function.php';
 require 'cek.php';
+
+// Check if user is admin, if not redirect
+if (!isAdmin()) {
+    header('location:index.php');
+    exit();
+}
 ?>
 
 
@@ -90,6 +96,7 @@ require 'cek.php';
                                         <tr>
                                             <th>No</th>
                                             <th>Email Admin</th>
+                                            <th>Role</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -101,10 +108,16 @@ require 'cek.php';
                                             $em = $data['email'];
                                             $iduser = $data['iduser'];
                                             $pw = $data['password'];
+                                            $role = $data['role'];
                                         ?>
                                             <tr>
                                                 <td><?php echo $i++; ?></td>
                                                 <td><?php echo $em; ?></td>
+                                                <td>
+                                                    <span class="badge <?php echo $role == 'admin' ? 'badge-primary' : 'badge-info'; ?>">
+                                                        <?php echo ucfirst($role); ?>
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $iduser; ?>">
                                                         <i class="fas fa-edit"></i> Edit
@@ -133,6 +146,13 @@ require 'cek.php';
                                                                     <label for="passwordbaru">Password Baru</label>
                                                                     <input type="password" name="passwordbaru" class="form-control" placeholder="Kosongkan jika tidak ingin mengubah">
                                                                     <small class="form-text text-muted">Kosongkan jika tidak ingin mengubah password</small>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="role">Role</label>
+                                                                    <select name="role" class="form-control" required>
+                                                                        <option value="admin" <?= $role == 'admin' ? 'selected' : ''; ?>>Admin</option>
+                                                                        <option value="user" <?= $role == 'user' ? 'selected' : ''; ?>>User</option>
+                                                                    </select>
                                                                 </div>
                                                                 <input type="hidden" name="id" value="<?= $iduser; ?>">
                                                                 <button type="submit" class="btn btn-primary" name="updateadmin">
@@ -223,6 +243,14 @@ require 'cek.php';
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                         <small class="form-text text-muted">Minimal 6 karakter</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select name="role" class="form-control" required>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                        <small class="form-text text-muted">Admin: Full access | User: Read-only access</small>
                     </div>
                     <button type="submit" class="btn btn-primary" name="addadmin">
                         <i class="fas fa-save mr-2"></i>Simpan

@@ -1,10 +1,14 @@
 <?php
 session_start();
 
-
-
 // Koneksi
 $conn = mysqli_connect("localhost", "root", "root", "UKK_stokbarang");
+
+// Helper function to check if user is admin
+function isAdmin()
+{
+    return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+}
 
 if (!$conn) {
     die("Koneksi database gagal: " . mysqli_connect_error());
@@ -256,8 +260,9 @@ if (isset($_POST["hapusbarangkeluar"])) {
 if (isset($_POST['addadmin'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $role = isset($_POST['role']) ? $_POST['role'] : 'admin';
 
-    $queryinsert = mysqli_query($conn, "insert into login (email, password) VALUES ('$email','$password')");
+    $queryinsert = mysqli_query($conn, "insert into login (email, password, role) VALUES ('$email','$password','$role')");
 
     if ($queryinsert) {
         header('location:admin.php');
@@ -270,9 +275,10 @@ if (isset($_POST['addadmin'])) {
 if (isset($_POST['updateadmin'])) {
     $emailbaru = $_POST['emailadmin'];
     $passwordbaru = $_POST['passwordbaru'];
+    $rolebaru = $_POST['role'];
     $idnya = $_POST['id'];
 
-    $queryupdate = mysqli_query($conn, "update login set email='$emailbaru', password='$passwordbaru' where iduser='$idnya'");
+    $queryupdate = mysqli_query($conn, "update login set email='$emailbaru', password='$passwordbaru', role='$rolebaru' where iduser='$idnya'");
 
     if ($queryupdate) {
         header('location:admin.php');

@@ -12,7 +12,10 @@ if (isset($_POST['login'])) {
     $hitung = mysqli_num_rows($cekdatabase);
 
     if ($hitung > 0) {
+        $ambildata = mysqli_fetch_array($cekdatabase);
         $_SESSION['log'] = 'True';
+        $_SESSION['role'] = $ambildata['role'];
+        $_SESSION['email'] = $ambildata['email'];
         header('location:index.php');
     } else {
         header('location:login.php');

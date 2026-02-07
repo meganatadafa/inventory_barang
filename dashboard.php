@@ -95,10 +95,12 @@ $top_barang = mysqli_query($conn, "SELECT namabarang, stock FROM stock ORDER BY 
                             <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Barang Keluar
                         </a>
-                        <a class="nav-link" href="admin.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
-                            Kelola Admin
-                        </a>
+                        <?php if (isAdmin()): ?>
+                            <a class="nav-link" href="admin.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+                                Kelola Admin
+                            </a>
+                        <?php endif; ?>
                         <a class="nav-link" href="logout.php">
                             LogOut
                         </a>

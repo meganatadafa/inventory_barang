@@ -38,26 +38,12 @@ if (!isset($_SESSION['log'])) {
     <meta name="author" content="" />
     <title>Login - UKK Stok Barang</title>
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/modern-styles.css" rel="stylesheet" />
+    <link href="css/lemon-theme.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     <style>
-        :root {
-            --primary-color: #1a1a2e;
-            --secondary-color: #16213e;
-            --accent-color: #0f3460;
-            --text-light: #f5f5f5;
-            --text-dark: #333333;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow-color: rgba(0, 0, 0, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -67,7 +53,6 @@ if (!isset($_SESSION['log'])) {
             overflow: hidden;
         }
 
-        /* Animated background elements */
         body::before {
             content: '';
             position: absolute;
@@ -75,7 +60,7 @@ if (!isset($_SESSION['log'])) {
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, var(--accent-color) 1px, transparent 1px);
+            background: radial-gradient(circle, #689f38 1px, transparent 1px);
             background-size: 50px 50px;
             animation: backgroundMove 20s linear infinite;
             opacity: 0.1;
@@ -103,10 +88,10 @@ if (!isset($_SESSION['log'])) {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 24px;
-            box-shadow: 0 20px 60px var(--shadow-color);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(196, 214, 0, 0.1);
         }
 
         @keyframes slideUp {
@@ -122,10 +107,10 @@ if (!isset($_SESSION['log'])) {
         }
 
         .login-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            background: linear-gradient(135deg, #c4d600 0%, #a4c639 100%) !important;
             padding: 45px 30px;
             text-align: center;
-            color: var(--text-light);
+            color: #1a1a1a !important;
             position: relative;
             overflow: hidden;
         }
@@ -137,7 +122,7 @@ if (!isset($_SESSION['log'])) {
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background: radial-gradient(circle, rgba(196, 214, 0, 0.1) 1px, transparent 1px);
             background-size: 30px 30px;
             animation: rotate 30s linear infinite;
         }
@@ -203,7 +188,7 @@ if (!isset($_SESSION['log'])) {
         .form-label {
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-dark);
+            color: #1a1a1a;
             margin-bottom: 10px;
             display: block;
             letter-spacing: 0.5px;
@@ -218,7 +203,7 @@ if (!isset($_SESSION['log'])) {
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--primary-color);
+            color: #c4d600;
             z-index: 10;
             font-size: 1.1rem;
             transition: all 0.3s ease;
@@ -237,25 +222,25 @@ if (!isset($_SESSION['log'])) {
 
         .form-control-modern:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: #c4d600;
             background: white;
-            box-shadow: 0 0 0 4px rgba(26, 26, 46, 0.1);
+            box-shadow: 0 0 0 4px rgba(196, 214, 0, 0.25);
             transform: translateY(-2px);
         }
 
         .btn-login {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            background: linear-gradient(135deg, #c4d600 0%, #a4c639 100%) !important;
             border: none;
             border-radius: 12px;
-            color: white;
+            color: #1a1a1a !important;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin-top: 15px;
-            box-shadow: 0 8px 25px rgba(26, 26, 46, 0.3);
+            box-shadow: 0 8px 25px rgba(196, 214, 0, 0.3);
             letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
@@ -268,13 +253,13 @@ if (!isset($_SESSION['log'])) {
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(196, 214, 0, 0.2), transparent);
             transition: left 0.5s;
         }
 
         .btn-login:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(26, 26, 46, 0.4);
+            box-shadow: 0 12px 35px rgba(196, 214, 0, 0.4);
         }
 
         .btn-login:hover::before {
@@ -283,7 +268,7 @@ if (!isset($_SESSION['log'])) {
 
         .btn-login:active {
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(26, 26, 46, 0.3);
+            box-shadow: 0 6px 20px rgba(196, 214, 0, 0.3);
         }
 
         .forgot-password {
@@ -292,7 +277,7 @@ if (!isset($_SESSION['log'])) {
         }
 
         .forgot-password a {
-            color: var(--primary-color);
+            color: #c4d600;
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
@@ -307,12 +292,12 @@ if (!isset($_SESSION['log'])) {
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent-color);
+            background: #689f38;
             transition: width 0.3s ease;
         }
 
         .forgot-password a:hover {
-            color: var(--accent-color);
+            color: #689f38;
         }
 
         .forgot-password a:hover::after {
@@ -351,7 +336,6 @@ if (!isset($_SESSION['log'])) {
             border: 1px solid #fecaca;
         }
 
-        /* Responsive Design */
         @media (max-width: 576px) {
             .login-container {
                 max-width: 100%;
@@ -398,37 +382,6 @@ if (!isset($_SESSION['log'])) {
             }
         }
 
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            .login-card {
-                background: rgba(26, 26, 46, 0.95);
-                color: var(--text-light);
-            }
-
-            .login-body {
-                background: var(--primary-color);
-            }
-
-            .form-label {
-                color: var(--text-light);
-            }
-
-            .form-control-modern {
-                background: rgba(255, 255, 255, 0.1);
-                border-color: rgba(255, 255, 255, 0.2);
-                color: var(--text-light);
-            }
-
-            .form-control-modern:focus {
-                background: rgba(255, 255, 255, 0.15);
-            }
-
-            .form-control-modern::placeholder {
-                color: rgba(245, 245, 245, 0.6);
-            }
-        }
-
-        /* Loading state */
         .btn-login.loading {
             pointer-events: none;
             opacity: 0.8;
@@ -444,7 +397,7 @@ if (!isset($_SESSION['log'])) {
             margin-left: -10px;
             margin-top: -10px;
             border: 2px solid transparent;
-            border-top: 2px solid white;
+            border-top: 2px solid #1a1a1a;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }

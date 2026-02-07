@@ -104,7 +104,15 @@ if (isset($_POST["updatebarang"])) {
 if (isset($_POST["hapusbarang"])) {
     $idb = $_POST["idb"];
 
+    // Hapus referensi di tabel masuk terlebih dahulu
+    $hapus_masuk = mysqli_query($conn, "delete from masuk where idbarang = '$idb'");
+
+    // Hapus referensi di tabel keluar terlebih dahulu
+    $hapus_keluar = mysqli_query($conn, "delete from keluar where idbarang = '$idb'");
+
+    // Baru hapus dari tabel stock
     $hapus = mysqli_query($conn, "delete from stock where idbarang = '$idb'");
+
     if ($hapus) {
         header('Location:index.php');
         exit();

@@ -15,30 +15,21 @@ require 'cek.php';
     <meta name="author" content="" />
     <title>Barang Masuk</title>
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/modern-styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="css/lemon-theme.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">PT.BONDVAST </a>
+        <a class="navbar-brand" href="index.php">PT. Bondvast</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <!-- <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-            </form> -->
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-10">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <!-- <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Activity Log</a> -->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
@@ -51,15 +42,19 @@ require 'cek.php';
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">INFORMASI GUDANG</div>
+                        <a class="nav-link" href="dashboard.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                            Dashboard
+                        </a>
                         <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                             Stock Barang
                         </a>
-                        <a class="nav-link" href="masuk.php">
+                        <a class="nav-link active" href="masuk.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-sign-in-alt"></i></div>
                             Barang Masuk
                         </a>
-                        <a class="nav-link" href="Keluar.php">
+                        <a class="nav-link" href="keluar.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Barang Keluar
                         </a>
@@ -81,47 +76,26 @@ require 'cek.php';
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4"> Barang Masuk</h1>
-                    <!-- <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area mr-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar mr-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div> -->
+                    <h1 class="mt-4">Barang Masuk</h1>
                     <div class="card mb-4">
                         <div class="card-header">
-                            <!-- Button to Open the Modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                Tambah Barang
+                                <i class="fas fa-plus mr-2"></i>Tambah Barang Masuk
                             </button>
-                            <a href="exportmasuk.php" class="btn btn-info">Export Data</a>
-
+                            <a href="exportmasuk.php" class="btn btn-info">
+                                <i class="fas fa-download mr-2"></i>Export Data
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Tanggal </th>
+                                            <th>Tanggal</th>
                                             <th>Nama Barang</th>
                                             <th>Jumlah</th>
                                             <th>Supplier</th>
                                             <th>Aksi</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -134,7 +108,6 @@ require 'cek.php';
                                             $namabarang = $data['namabarang'];
                                             $qty = $data['qty'];
                                             $keterangan = $data['keterangan'];
-
                                         ?>
                                             <tr>
                                                 <td><?= $tanggal; ?></td>
@@ -142,69 +115,66 @@ require 'cek.php';
                                                 <td><?= $qty; ?></td>
                                                 <td><?= $keterangan; ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $idm; ?>">
-                                                        Edit
+                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $idm; ?>">
+                                                        <i class="fas fa-edit"></i> Edit
                                                     </button>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $idm; ?>">
-                                                        Delete
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $idm; ?>">
+                                                        <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </td>
                                             </tr>
+
+                                            <!-- Edit Modal -->
                                             <div class="modal" id="edit<?= $idm; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-
-                                                        <!-- Modal Header -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Edit Barang</h4>
+                                                            <h4 class="modal-title">Edit Barang Masuk</h4>
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
-
-                                                        <!-- Modal body -->
                                                         <form method="post">
                                                             <div class="modal-body">
-                                                                <input type="text" name="keterangan" value="<?= $keterangan; ?>" class="form-control" required>
-                                                                <br>
-                                                                <input type="number" name="qty" value="<?= $qty; ?>" class="form-control" required>
-                                                                <br>
+                                                                <div class="form-group">
+                                                                    <label for="keterangan">Supplier</label>
+                                                                    <input type="text" name="keterangan" value="<?= $keterangan; ?>" class="form-control" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="qty">Jumlah</label>
+                                                                    <input type="number" name="qty" value="<?= $qty; ?>" class="form-control" required>
+                                                                </div>
                                                                 <input type="hidden" name="idb" value="<?= $idb; ?>">
                                                                 <input type="hidden" name="idm" value="<?= $idm; ?>">
-                                                                <button type="submit" class="btn btn-primary" name="updatebarangmasuk">Submit</button>
-                                                                <button type="button" class="btn btn-danger " data-dismiss="modal">Close</button>
-
+                                                                <button type="submit" class="btn btn-primary" name="updatebarangmasuk">
+                                                                    <i class="fas fa-save mr-2"></i>Update
+                                                                </button>
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                                    <i class="fas fa-times mr-2"></i>Batal
+                                                                </button>
                                                             </div>
                                                         </form>
-
-
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <!-- delete Modal -->
+                                            <!-- Delete Modal -->
                                             <div class="modal" id="delete<?= $idm; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-
-                                                        <!-- Modal Header -->
                                                         <div class="modal-header">
                                                             <h4 class="modal-title">Hapus Barang?</h4>
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
-
-                                                        <!-- Modal body -->
                                                         <form method="post">
                                                             <div class="modal-body">
-                                                                Apakah Anda Yakin Ingin Menghapus <?= $namabarang; ?>?
+                                                                <p>Apakah Anda yakin ingin menghapus <strong><?= $namabarang; ?></strong>?</p>
                                                                 <input type="hidden" name="idb" value="<?= $idb; ?>">
                                                                 <input type="hidden" name="idm" value="<?= $idm; ?>">
                                                                 <input type="hidden" name="kty" value="<?= $qty; ?>">
-
-                                                                <br> <br>
-                                                                <button type="submit" class="btn btn-danger" name="hapusbarangmasuk">Hapus</button>
+                                                                <button type="submit" class="btn btn-danger" name="hapusbarangmasuk">
+                                                                    <i class="fas fa-trash mr-2"></i>Hapus
+                                                                </button>
                                                             </div>
                                                         </form>
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -221,68 +191,68 @@ require 'cek.php';
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; PT.BONDVAST 2025</div>
+                        <div class="text-muted">Copyright &copy; PT. Bondvast 2025</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                            <a href="#">Terms & Conditions</a>
                         </div>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
+
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
 </body>
-<!-- The Modal -->
+
+<!-- Add Modal -->
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
-
-            <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Tambah Barang Masuk</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
-            <!-- Modal body -->
             <form method="post">
                 <div class="modal-body">
-                    <select name="barangnya" class="form-control">
-                        <?php
-                        $ambilsemuadatanya = mysqli_query($conn, "select * from stock");
-                        while ($fetcharray = mysqli_fetch_array($ambilsemuadatanya)) {
-                            $namabarangnya = $fetcharray['namabarang'];
-                            $idbarangnya = $fetcharray['idbarang'];
-
-                        ?>
-                            <option value="<?= $idbarangnya; ?>"><?= $namabarangnya; ?></option>
-                        <?php
-                        }
-                        ?>
-                    </select>
-                    <br>
-                    <input type="number" name="qty" class="form-control" placeholder="Quantity" required>
-
-                    <br>
-                    <input type="text" name="penerima" class="form-control" placeholder="Supplier" required>
-                    <br>
-
-                    <button type="submit" class="btn btn-primary" name="barangmasuk">Submit</button>
-                    <button type="button" class="btn btn-danger " data-dismiss="modal">Close</button>
-
+                    <div class="form-group">
+                        <label for="barangnya">Pilih Barang</label>
+                        <select name="barangnya" class="form-control" required>
+                            <?php
+                            $ambilsemuadatanya = mysqli_query($conn, "select * from stock");
+                            while ($fetcharray = mysqli_fetch_array($ambilsemuadatanya)) {
+                                $namabarangnya = $fetcharray['namabarang'];
+                                $idbarangnya = $fetcharray['idbarang'];
+                            ?>
+                                <option value="<?= $idbarangnya; ?>"><?= $namabarangnya; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="qty">Jumlah</label>
+                        <input type="number" name="qty" class="form-control" placeholder="Quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="penerima">Supplier</label>
+                        <input type="text" name="penerima" class="form-control" placeholder="Nama Supplier" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="barangmasuk">
+                        <i class="fas fa-save mr-2"></i>Simpan
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-times mr-2"></i>Batal
+                    </button>
                 </div>
             </form>
-
-
         </div>
     </div>
 </div>

@@ -15,7 +15,9 @@ require 'cek.php';
     <meta name="author" content="" />
     <title>Stock Barang</title>
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/modern-styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="css/lemon-theme.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
@@ -51,6 +53,10 @@ require 'cek.php';
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">INFORMASI GUDANG</div>
+                        <a class="nav-link" href="dashboard.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                            Dashboard
+                        </a>
                         <a class="nav-link" href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
                             Stock Barang
@@ -287,7 +293,5 @@ require 'cek.php';
         </div>
     </div>
 </div>
-
-</html>
 
 </html>

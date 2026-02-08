@@ -422,7 +422,7 @@ if (!isset($_SESSION['log'])) {
         <div class="login-card">
             <div class="login-header">
                 <i class="fas fa-box-open"></i>
-                <h2>PT. Bondvast</h2>
+                <h2>TOKO BAROKAH</h2>
                 <p>login untuk melanjutkan</p>
             </div>
             <div class="login-body">

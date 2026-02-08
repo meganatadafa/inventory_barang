@@ -19,7 +19,7 @@ if (!isAdmin()) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Kelola Admin</title>
+    <title>Kelola Akun</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/modern-styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -29,7 +29,7 @@ if (!isAdmin()) {
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">PT. Bondvast</a>
+        <a class="navbar-brand" href="index.php">TOKO BAROKAH</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-10">
@@ -66,7 +66,7 @@ if (!isAdmin()) {
                         </a>
                         <a class="nav-link active" href="admin.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
-                            Kelola Admin
+                            Kelola Akun
                         </a>
                         <a class="nav-link" href="logout.php">
                             LogOut
@@ -75,18 +75,18 @@ if (!isAdmin()) {
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Stock Information:</div>
-                    PT. Bondvast
+                    TOKO BAROKAH
                 </div>
             </nav>
         </div>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Kelola Admin</h1>
+                    <h1 class="mt-4">Kelola Akun</h1>
                     <div class="card mb-4">
                         <div class="card-header">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                <i class="fas fa-user-plus mr-2"></i>Tambah Admin
+                                <i class="fas fa-user-plus mr-2"></i>Tambah Akun
                             </button>
                         </div>
                         <div class="card-body">
@@ -204,7 +204,7 @@ if (!isAdmin()) {
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; PT. Bondvast 2025</div>
+                        <div class="text-muted">Copyright &copy; TOKO BAROKAH 2025</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;

@@ -23,7 +23,7 @@ require 'cek.php';
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">PT. Bondvast</a>
+        <a class="navbar-brand" href="index.php">TOKO BAROKAH</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-10">
@@ -61,7 +61,7 @@ require 'cek.php';
                         <?php if (isAdmin()): ?>
                             <a class="nav-link" href="admin.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
-                                Kelola Admin
+                                Kelola Akun
                             </a>
                         <?php endif; ?>
                         <a class="nav-link" href="logout.php">
@@ -71,7 +71,7 @@ require 'cek.php';
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Stock Information:</div>
-                    PT. Bondvast
+                    TOKO BAROKAH
                 </div>
             </nav>
         </div>
@@ -199,7 +199,7 @@ require 'cek.php';
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; PT. Bondvast 2025</div>
+                        <div class="text-muted">Copyright &copy; TOKO BAROKAH 2025</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;

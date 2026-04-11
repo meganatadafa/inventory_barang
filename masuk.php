@@ -89,6 +89,45 @@ require 'cek.php';
                             <a href="exportmasuk.php" class="btn btn-info">
                                 <i class="fas fa-download mr-2"></i>Export Data
                             </a>
+
+                            <!-- Filter Button -->
+                            <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#filterCollapse">
+                                <i class="fas fa-filter mr-2"></i>Filter
+                            </button>
+                        </div>
+                        <div class="collapse" id="filterCollapse">
+                            <div class="card-body bg-light">
+                                <form method="GET" action="masuk.php">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="filter_tanggal">Tanggal</label>
+                                                <input type="date" name="filter_tanggal" id="filter_tanggal" class="form-control" value="<?= isset($_GET['filter_tanggal']) ? $_GET['filter_tanggal'] : ''; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="filter_namabarang">Nama Barang</label>
+                                                <input type="text" name="filter_namabarang" id="filter_namabarang" class="form-control" placeholder="Cari nama barang..." value="<?= isset($_GET['filter_namabarang']) ? $_GET['filter_namabarang'] : ''; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="filter_supplier">Supplier</label>
+                                                <input type="text" name="filter_supplier" id="filter_supplier" class="form-control" placeholder="Cari supplier..." value="<?= isset($_GET['filter_supplier']) ? $_GET['filter_supplier'] : ''; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 d-flex align-items-end">
+                                            <button type="submit" class="btn btn-primary mr-2">
+                                                <i class="fas fa-search"></i> Cari
+                                            </button>
+                                            <a href="masuk.php" class="btn btn-secondary">
+                                                <i class="fas fa-undo"></i> Reset
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -106,7 +145,25 @@ require 'cek.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $ambilsemuadatastock = mysqli_query($conn, "select * from masuk m, stock s where s.idbarang = m.idbarang");
+                                        // Build filter query
+                                        $query = "select * from masuk m, stock s where s.idbarang = m.idbarang";
+
+                                        if (isset($_GET['filter_tanggal']) && !empty($_GET['filter_tanggal'])) {
+                                            $tanggal_filter = mysqli_real_escape_string($conn, $_GET['filter_tanggal']);
+                                            $query .= " AND m.tanggal = '$tanggal_filter'";
+                                        }
+
+                                        if (isset($_GET['filter_namabarang']) && !empty($_GET['filter_namabarang'])) {
+                                            $namabarang_filter = mysqli_real_escape_string($conn, $_GET['filter_namabarang']);
+                                            $query .= " AND s.namabarang LIKE '%$namabarang_filter%'";
+                                        }
+
+                                        if (isset($_GET['filter_supplier']) && !empty($_GET['filter_supplier'])) {
+                                            $supplier_filter = mysqli_real_escape_string($conn, $_GET['filter_supplier']);
+                                            $query .= " AND m.keterangan LIKE '%$supplier_filter%'";
+                                        }
+
+                                        $ambilsemuadatastock = mysqli_query($conn, $query);
                                         while ($data = mysqli_fetch_array($ambilsemuadatastock)) {
                                             $idb = $data["idbarang"];
                                             $idm = $data["idmasuk"];

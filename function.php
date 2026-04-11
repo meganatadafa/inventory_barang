@@ -22,18 +22,31 @@ if (isset($_POST['addnewbarang'])) {
     $deskripsi  = $_POST['deskripsi'];
     $stock      = $_POST['stock'];
 
-    // Insert ke database
-    $addtotable = mysqli_query(
-        $conn,
-        "INSERT INTO stock (namabarang, deskripsi, stock) 
-        VALUES ('$namabarang', '$deskripsi', '$stock')"
-    );
+    // Cek apakah nama barang sudah ada di database
+    $ceknamabarang = mysqli_query($conn, "SELECT * FROM stock WHERE namabarang = '$namabarang'");
+    $hitungnamabarang = mysqli_num_rows($ceknamabarang);
 
-    if ($addtotable) {
-        header('Location: index.php');
+    if ($hitungnamabarang > 0) {
+        // Jika nama barang sudah ada, tampilkan peringatan
+        echo "<script>
+            alert('Peringatan: Nama barang \"$namabarang\" sudah ada! Silakan gunakan nama barang yang berbeda.');
+            window.history.back();
+        </script>";
         exit();
     } else {
-        echo "Gagal menambah barang: " . mysqli_error($conn);
+        // Insert ke database jika nama barang belum ada
+        $addtotable = mysqli_query(
+            $conn,
+            "INSERT INTO stock (namabarang, deskripsi, stock) 
+            VALUES ('$namabarang', '$deskripsi', '$stock')"
+        );
+
+        if ($addtotable) {
+            header('Location: index.php');
+            exit();
+        } else {
+            echo "Gagal menambah barang: " . mysqli_error($conn);
+        }
     }
 };
 
